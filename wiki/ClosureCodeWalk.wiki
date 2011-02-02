@@ -152,7 +152,7 @@ You can modify scrolling behavior. For instance selected child in the container 
 <div class="tv-container-horizontal movie-cover-container
             movie-covers-3">
   <div class="tv-container-middle-scroll animation">
-     <!-- [... 10 movie covers ...] ->>
+     <!-- [... 10 movie covers ...] -->
   </div>
 </div>
 }}}
