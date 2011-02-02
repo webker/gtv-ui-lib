@@ -1,0 +1,17 @@
+#summary [Closure] Library code walk
+
+= Introduction =
+
+This code walk you will learn how to create simple page using Closure based ui library that looks as below.
+
+
+
+Add your content here.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
