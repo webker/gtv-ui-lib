@@ -38,7 +38,7 @@ Toolkit does not construct any HTML on the fly. It’s designed to decorate exis
 </div>
 }}}
 
-== First horizontal container ==
+= First horizontal container =
 
 Let’s take a look at first horizontal container that holds two buttons.
 
@@ -73,3 +73,42 @@ As you can see components are plain HTML using mainly DIV elements. You can use 
   </div>
 </div>
 }}}
+
+= Fire up toolkit =
+
+Now go ahead and fire up toolkit. Uncomment SCRIPT element on the bottom of the page.
+
+{{{
+// DecorationHandler facilitates post-decoration initialization of
+// components.
+//  * Components can be matched by element id and CSS class.
+//  * Multiple handlers can be called for decorated component.
+var decorateHandler = new tv.ui.DecorateHandler();
+// Capturing first component to be focused. We want it to be button.
+var firstNavItem;
+decorateHandler.addClassHandler('tv-button', function(button) {
+  firstNavItem = button;
+});
+// Attaching on ACTION handler to button.
+decorateHandler.addClassHandler('alert-button', function(button) {
+  goog.events.listen(button, tv.ui.Button.EventType.ACTION,
+      function() {
+        alert('Button clicked.');
+      });
+});
+
+// Decorating whole document's body and adding dynamics to it.
+tv.ui.decorate(document.body, decorateHandler.getHandler());
+// Giving focus to first button on the page.
+tv.ui.Document.getInstance().setFocusedComponent(firstNavItem);
+}}}
+
+Refresh the page and you will be able to navigate through the page using keyboard and mouse. Play with it:
+  * press ENTER on “alert button”,
+  * click on “Go to google.com”,
+  * use arrow keys to navigate.
+
+
+Note that:
+If component is focused, a tv-component-focused CSS class is being added to it. In CSS styles declares on top of the page, it’s declared to add blue box shadow.
+Fifth element of first movie covers shelf is partially visible.
