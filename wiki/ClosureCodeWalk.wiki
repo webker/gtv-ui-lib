@@ -112,3 +112,21 @@ Refresh the page and you will be able to navigate through the page using keyboar
 Note that:
 If component is focused, a tv-component-focused CSS class is being added to it. In CSS styles declares on top of the page, it’s declared to add blue box shadow.
 Fifth element of first movie covers shelf is partially visible.
+
+=Scrolling container=
+
+Let’s fix the issue with last partially visible element in the container. Uncomment the content under <!-- Second container … -->.
+
+{{{
+<div class="tv-container-horizontal movie-cover-container
+            movie-covers-2">
+  <!-- If in the container there is element decorated with CSS class
+       tv-container-start-scroll, scrolling behaviour will be added
+       to the container. -->
+  <div class="tv-container-start-scroll">
+   <!-- [... the same as in first container ...] -->
+  </div>
+</div>
+}}}
+
+Adding child element with tv-container-start-scroll is a convention that triggers a specific scrolling behavior in container. With this class applied selected child will always be positioned at start of scrolling window.
