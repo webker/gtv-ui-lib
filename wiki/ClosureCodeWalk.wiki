@@ -42,6 +42,7 @@ Toolkit does not construct any HTML on the fly. It’s designed to decorate exis
 
 Let’s take a look at first horizontal container that holds two buttons.
 
+{{{
 <div class="tv-container-horizontal buttons-container">
   <!-- Declares that following element will be button. Buttons have
        ACTION events that you can hook up. -->
@@ -54,6 +55,7 @@ Let’s take a look at first horizontal container that holds two buttons.
      Go to google.com
   </div>
 </div>
+}}}
 
 As you can see components are plain HTML using mainly DIV elements. You can use other elements but DIVs are in most cases the best choice.
 
@@ -63,7 +65,7 @@ As you can see components are plain HTML using mainly DIV elements. You can use 
   <div class="tv-container-horizontal movie-cover-container
               movie-covers-1">
     <!-- Single movie cover is declared as Component. This is lowest -->
-    <!--  lowest level in hierarchy component in tv.ui.Decoration. -->
+    <!--  lowest level in hierarchy component in toolkit. -->
     <div class="tv-component movie-cover">
       <img src="http://g2.gstatic.com/.../93951_aa.jpg">
     </div>
