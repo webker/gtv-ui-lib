@@ -1,13 +1,32 @@
-#summary [Closure] How to write custom component.
+#summary [Closure] How to write custom component
 
-= Introduction =
+= Writing custom component =
 
-Add your content here.
+== Checking your reasons ==
 
+TV UI library designed in a way most tasks could be accomplished without writing your own component. Do so only if your goal is code reuse. Otherwise you probably doing something wrong.
 
-= Details =
+== Extending base class ==
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Choose a base class to extend. All TV UI classes are designed with extensibility in mind, so feel free to choose the one that best suits your needs. That said, a usual candidate is {{{tv.ui.Component}}}.
+
+{{{
+// Provide a class name for your component.
+goog.provide('acme.Button');
+
+// Require base class.
+goog.require('tv.ui.Component');
+
+/**
+ * @constructor
+ * @extends {tv.ui.Component}
+ */
+acme.Button = function() {
+  // Don’t forget to call a constructor of base class.
+  goog.base(this);
+
+  // ...rest of initialization code...
+};
+// Actually inherit your class from base.
+goog.inherits(acme.Button, tv.ui.Component);
+}}}
