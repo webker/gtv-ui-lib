@@ -6,7 +6,7 @@ This code walk you will learn how to create simple page using Closure based ui l
 
 http://lh4.ggpht.com/_dS5nq8R6miE/TUkhSTcFsGI/AAAAAAAAEIc/ihsiQSV7kYQ/tv.ui.Decoration%20codelab%20-%20Google%20Docs.jpg
 
-First download archive with simple HTML for this codelab and take a look at it. All it does is:
+First [https://code.google.com/p/gtv-ui-lib/downloads/detail?name=codewalk-start.zip download archive with simple HTML for this codelab] and take a look at it. All it does is:
   * bootstraps Closure Library along with tv.ui.Decoration code in HEAD element,
   * imports necessary components using goog.require(),
   * contains basic CSS styles that defines the page,
