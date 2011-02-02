@@ -130,3 +130,36 @@ Let’s fix the issue with last partially visible element in the container. Unco
 }}}
 
 Adding child element with tv-container-start-scroll is a convention that triggers a specific scrolling behavior in container. With this class applied selected child will always be positioned at start of scrolling window.
+
+=Scrolling animated container=
+
+Adding animation is easy when using CSS3 animations. Uncomment third shelf.
+
+<div class="tv-container-horizontal movie-cover-container
+            movie-covers-3">
+  <div class="tv-container-start-scroll animation">
+     <!-- [... the same as in first container ...] -->
+  </div>
+</div>
+
+It differs from second shelf with only additional animation CSS class added to scrolling container. It’s defined as -webkit-transition: all 200ms ease. That means that all CSS properties will be animated for 200ms with ease function. Refresh the page and see the animations in the third container.
+
+You can modify scrolling behavior. For instance selected child in the container can be set to be middle one. It’s more pleasant for the user when using horizontal containers. Uncomment the fourth container.
+
+{{{
+<div class="tv-container-horizontal movie-cover-container
+            movie-covers-3">
+  <div class="tv-container-middle-scroll animation">
+     <!-- [... 10 movie covers ...] ->>
+  </div>
+</div>
+}}}
+
+Vertical container can have scrolling behaviour in the same way as horizontal containers. In our example height of the screen can be too small to display all shelves. Uncomment following line   	
+
+{{{
+<div class="tv-container-vertical shelves">
+      <!-- <div class="tv-container-start-scroll animation"> -->
+}}}
+
+and enclosing {{{</div>}}} at the bottom. After page refresh you will notice that shelves container is also scrolling with animation.
