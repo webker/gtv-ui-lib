@@ -135,12 +135,14 @@ Adding child element with tv-container-start-scroll is a convention that trigger
 
 Adding animation is easy when using CSS3 animations. Uncomment third shelf.
 
+{{{
 <div class="tv-container-horizontal movie-cover-container
             movie-covers-3">
   <div class="tv-container-start-scroll animation">
      <!-- [... the same as in first container ...] -->
   </div>
 </div>
+}}}
 
 It differs from second shelf with only additional animation CSS class added to scrolling container. It’s defined as -webkit-transition: all 200ms ease. That means that all CSS properties will be animated for 200ms with ease function. Refresh the page and see the animations in the third container.
 
