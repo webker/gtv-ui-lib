@@ -115,7 +115,7 @@ Fifth element of first movie covers shelf is partially visible.
 
 =Scrolling container=
 
-Let’s fix the issue with last partially visible element in the container. Uncomment the content under <!-- Second container … -->.
+Let’s fix the issue with last partially visible element in the container. Uncomment the content under {{{<!-- Second container … -->}}}.
 
 {{{
 <div class="tv-container-horizontal movie-cover-container
