@@ -13,7 +13,7 @@ First [https://code.google.com/p/gtv-ui-lib/downloads/detail?name=codewalk-start
   * contains HTML only for part of above page, rest of it is commented as it will be explained later.
 
 
-If you would have some problems, you can download final result of the codelab.
+If you would have some problems, you can [https://code.google.com/p/gtv-ui-lib/downloads/detail?name=codewalk-final.zip download final result of the codelab].
 
 = Details =
 
