@@ -24,16 +24,16 @@ http://lh3.ggpht.com/_dS5nq8R6miE/TUkhSddEcOI/AAAAAAAAEIY/nsdYDFBusIo/s800/tv.ui
 Toolkit does not construct any HTML on the fly. It’s designed to decorate existing HTML in order to make components out of it and add dynamics to it. Decoration is based on conventions by adding special CSS classes to HTML elements (all of those have “tv-” prefix). Let’s take a look at already downloaded example.
 
 {{{
-// Top level container is declared as vertical container. Note that
-// additional styles can be applied for customization.
+<!-- Top level container is declared as vertical container. Note that
+     additional styles can be applied for customization. -->
 <div class="tv-container-vertical main-container">
-  // Declares horizontal container that holds two buttons.
+  <!-- Declares horizontal container that holds two buttons. -->
   <div class="tv-container-horizontal buttons-container">
-    // “alert button” and “go to google.com”
+    <!-- “alert button” and “go to google.com” -->
   </div>
-  // Declares vertical container that holds shelves.
+  <!-- Declares vertical container that holds shelves. -->
   <div class="tv-container-vertical shelves">
-    // “shelves” with images
+    <!-- “shelves” with images -->
   </div>
 </div>
 }}}
