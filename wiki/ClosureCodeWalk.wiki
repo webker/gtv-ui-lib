@@ -4,7 +4,7 @@
 
 This code walk you will learn how to create simple page using Closure based ui library that looks as below.
 
-
+http://lh4.ggpht.com/_dS5nq8R6miE/TUkhSTcFsGI/AAAAAAAAEIc/ihsiQSV7kYQ/tv.ui.Decoration%20codelab%20-%20Google%20Docs.jpg
 
 Add your content here.
 
