@@ -243,36 +243,28 @@ gtv.jq.RowControl.prototype.enableNavigation = function() {
  * @private
  */
 gtv.jq.RowControl.prototype.scrollRow = function(item, getFinishedAction) {
-  var rowControl = this;
-
-  var scrollRow = rowControl.rowContainer_;
-
-  var itemOffset = item.position();
-  var itemWidth = item.parent().outerWidth();
-
+  var container = item.parent();
+  var scrollRow = this.rowContainer_;
+  var itemNumber = container.parent().children().index(container);
+  var margins = parseInt(container.css('margin-left')) +
+      parseInt(container.css('margin-right'));
+  var itemWidth = container.outerWidth();
   var containerWidth = scrollRow.innerWidth();
+  var scrollPosition = scrollRow.scrollLeft();
+  var leftEdge = (itemWidth + margins) * itemNumber;
+  var rightEdge = leftEdge + itemWidth + margins;
 
-  var scrollDiv = scrollRow.children('.scroll-items-div');
-  var scrollDivOffset = scrollDiv.position();
-
-  if (itemOffset.left + itemWidth + scrollDivOffset.left > containerWidth) {
-    // If the item is not fully visible on the right side of the control,
-    // move it into view, with animation.
-    var move =
-      itemOffset.left + itemWidth + scrollDivOffset.left - containerWidth;
-
-    scrollDiv.stop().animate({
-        left: '-=' + move
+  if (leftEdge < scrollPosition) {
+    // Scroll container to align left edge of this item at the left edge
+    scrollRow.stop().animate({
+        scrollLeft: leftEdge
       },
       getFinishedAction());
   }
-  else if (itemOffset.left + scrollDivOffset.left < 0) {
-    // If the item is not fully visible on the left side of the control,
-    // move it into view, with animation.
-    var move = itemOffset.left + scrollDivOffset.left;
-
-    scrollDiv.stop().animate({
-        left: '-=' + move
+  else if (rightEdge > (scrollPosition + containerWidth) ) {
+    // Scroll container to align right edge of this item at the right edge
+    scrollRow.stop().animate({
+        scrollLeft: rightEdge - containerWidth
       },
       getFinishedAction());
   }
