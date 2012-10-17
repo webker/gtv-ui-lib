@@ -1,0 +1,191 @@
+
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <meta charset="utf-8"> 
+    <title>Google TV: Demo</title> 
+    <link rel="stylesheet" href="http://gtvdemos.appspot.com/io-2011/static/demo-theme.css"> 
+    
+<script type="text/javascript" src="http://gtvdemos.appspot.com/io-2011/static/jquery-1.4.2.min.js"></script> 
+<script type="text/javascript" src="http://gtvdemos.appspot.com/io-2011/static/gtvcore.js"></script> 
+<script type="text/javascript" src="http://gtvdemos.appspot.com/io-2011/static/keycontrol.js"></script> 
+<link rel="stylesheet" href="http://gtvdemos.appspot.com/io-2011/static/jquery-demo.css"> 
+ 
+  </head> 
+  <body> 
+    
+    <div id="header"> 
+      <div class="center"> 
+        <img alt="Google TV Logo" src="http://gtvdemos.appspot.com/io-2011/static/spotlightgallery-logo.png"> 
+        <h2>jQuery UI Library: Key Controller</h2> 
+      </div> 
+    </div> 
+ 
+    <ul id="colorstrip"> 
+      <li class="col1"></li> 
+      <li class="col2"></li> 
+      <li class="col3"></li> 
+      <li class="col4"></li> 
+    </ul> 
+ 
+    <div id="keypress-dialog"></div> 
+    
+    
+<div id="main" class="center demo2"> 
+  <ul id="zone1"> 
+    <h3>Zone 1</h3> 
+    <div class="item-row"> 
+      <li class="item-parent"><div class="item">ITEM 1</div></li> 
+      <li class="item-parent"><div class="item">ITEM 2</div></li> 
+      <li class="item-parent"><div class="item">ITEM 3</div></li> 
+      <li class="item-parent"><div class="item">ITEM 4</div></li> 
+      <li class="item-parent"><div class="item">ITEM 5</div></li> 
+      <li class="item-parent"><div class="item">ITEM 6</div></li> 
+      <li class="item-parent"><div class="item">ITEM 7</div></li> 
+      <li class="item-parent"><div class="item">ITEM 8</div></li> 
+      <li class="item-parent"><div class="item">ITEM 9</div></li> 
+      <li class="item-parent"><div class="item">ITEM 10</div></li> 
+      <li class="item-parent"><div class="item">ITEM 11</div></li> 
+      <li class="item-parent"><div class="item">ITEM 12</div></li> 
+    </div> 
+  </ul> 
+  
+  <ul id="zone2"> 
+    <h3>Zone 2</h3> 
+    <div class="item-row"> 
+      <li class="item-parent"><input class="item" type="text" id="ss" name="ss" value="search"></li> 
+    </div> 
+  </ul> 
+</div> 
+ 
+    
+    
+<script> 
+var App = {};
+ 
+App.swapClassNames = function(el, firstClass, lastClass) {
+  el.addClass(firstClass);
+  el.removeClass(lastClass);
+  window.setTimeout(function() {
+    el.removeClass(firstClass);
+    el.addClass(lastClass);
+  }, 0);
+};
+ 
+App.createKeypressHandler = function(keyName) {
+  return function() {
+    var dialog = $('#keypress-dialog');
+    dialog.html(keyName);
+    App.swapClassNames(dialog, 'show', 'animate');
+    return new gtv.jq.Selection('none');
+
+  };
+};
+ 
+
+
+App.scrollItemToItem = function(item, scrollToItem) {
+  // Translate new item to the other item's position
+  var itemOffsetW = item.position().left - scrollToItem.position().left;
+  item.parent().parent().css('-webkit-transform',
+      'translate(-' + itemOffsetW + 'px, 0)');
+};
+ 
+App.lastItem = null;
+App.scrollDown = function(oldItem, newItem) {
+  $('#ss').val('');
+  $('#ss').focus();
+  return new gtv.jq.Selection('none');
+}
+
+App.scrollLeftRight = function(oldItem, newItem) {
+  if (!newItem.length) {
+    return new gtv.jq.Selection('none');
+  }
+  
+  // Check if new item fits into parent elements viewport
+  var rowEl = newItem.parent().parent().parent();
+  var rowLeft = rowEl.position().left;
+  var rowRight = rowLeft + rowEl.width();
+  var newItemLeft = newItem.position().left;
+  var newItemRight = newItemLeft + newItem.width();
+  
+  if (newItemRight > rowRight) {
+    // Scrolling right. Match item to first item's position.
+    App.scrollItemToItem(newItem, newItem.parent().parent().children().first());
+    App.lastItem = App.lastItem || oldItem;
+  } else if (newItemLeft < rowLeft) {
+    // Scrolling left. Match item to last item's position.
+    App.scrollItemToItem(newItem, App.lastItem);
+  }
+  
+  return new gtv.jq.Selection('none');
+};
+ 
+// Create global key mapping to listen for all key events
+var keyController = new gtv.jq.KeyController();
+keyController.setGlobalKeyMapping({
+  8: App.createKeypressHandler('BACKSPACE'),
+  9: App.createKeypressHandler('TAB'),
+  13: App.createKeypressHandler('ENTER'),
+  37: App.createKeypressHandler('LEFT'),
+  38: App.createKeypressHandler('UP'),
+  39: App.createKeypressHandler('RIGHT'),
+  40: App.createKeypressHandler('DOWN'),
+});
+ 
+// Start key controller on initial zone
+keyController.start();
+</script> 
+ 
+ 
+<script> 
+// Define behavior zones
+var zone1 = new gtv.jq.KeyBehaviorZone({
+  containerSelector: '#zone1',
+  navSelectors: {
+    item: '.item',
+    itemParent: '.item-parent',
+    itemRow: '.item-row',
+    itemPage: null
+  },
+  selectionClasses: {
+    basic: 'item-selected'
+  },
+  keyMapping: {
+    37: App.scrollLeftRight,
+    39: App.scrollLeftRight,
+    40: App.scrollDown
+  },
+  actions: {
+  },
+  useGeometry: false
+});
+    
+var zone2 = new gtv.jq.KeyBehaviorZone({
+  containerSelector: '#zone2',
+  navSelectors: {
+    item: '.item',
+    itemParent: '.item-parent',
+    itemRow: '.item-row',
+    itemPage: null
+  },
+  selectionClasses: {
+    basic: 'item-selected'
+  },
+  keyMapping: {
+  },
+  actions: {
+  },
+  useGeometry: false
+});
+ 
+// Add behavior zones
+keyController.addBehaviorZone(zone1, true);
+keyController.addBehaviorZone(zone2);
+</script> 
+ 
+ 
+  </body> 
+</html> 
+
